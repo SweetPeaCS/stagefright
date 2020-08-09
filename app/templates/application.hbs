@@ -2,9 +2,11 @@
     <h1>Clip Analytics</h1>
 
     <ul>
-        <li>Analyse</li>
-        <li>About</li>
+        <li><LinkTo @route="analyse">Analyse</LinkTo></li>
+        <li><LinkTo @route="about">About</LinkTo></li>
     </ul>
 </header>
 
-{{outlet}}
+<div id="main-content">
+    {{outlet}}
+</div>

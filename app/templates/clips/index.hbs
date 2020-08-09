@@ -1,0 +1,11 @@
+<h3>Clip Overview</h3>
+
+<div class="search-container flex-container flex-row">
+    <ModelSearch />
+</div>
+
+<div class="flex-container flex-row">
+    {{#each @model as |clip|}}
+        <LinkTo @route="clips.clip" @model={{clip}}><ClipCard @clip={{clip}}></ClipCard></LinkTo>
+    {{/each}}
+</div>

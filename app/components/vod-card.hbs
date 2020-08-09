@@ -1,0 +1,36 @@
+<div class="card-item clip-card-item flex-container flex-col" style="background-image: url({{@vod.thumbnails.medium}});">
+    <div class="card-item-title">
+        <span class="flex-container flex-row">
+            <img src="{{@vod.broadcasterLogo}}" alt="{{@vod.broadcaster}} Logo">
+            {{@vod.broadcaster}}
+        </span>
+        <h3>{{@vod.title}}</h3>
+    </div>
+    
+    <section class="meta-info flex-container flex-row flex-split flex-col-bottom">
+        <div class="card-meta-info-half">
+            <span class="flex-container flex-row">
+                <i class="gg-eye"></i>
+                <span>{{@vod.views}}</span>
+            </span>
+            <span class="flex-container flex-row">
+                <i class="gg-games"></i>
+                <span>{{#if @vod.isCSGO}}
+                    CS:GO
+                {{else}}
+                    {{@vod.game}}
+                {{/if}}</span>
+            </span>
+        </div>
+        <div class="card-meta-info-half card-meta-info-half_right">
+            <span class="flex-container flex-row fles-split">
+                <i class="gg-stopwatch"></i>
+                <span>{{@vod.length}}s</span>
+            </span>
+            <span class="flex-container flex-row">
+                <i class="gg-calendar"></i>
+                <span>{{@vod.date}}</span>
+            </span>
+        </div>
+    </section>
+</div>
