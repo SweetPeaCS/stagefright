@@ -1,11 +1,11 @@
 <h3>Vod Overview</h3>
 
 <div class="search-container flex-container flex-row">
-    <ModelSearch />
+    <Search::ModelSearch />
 </div>
 
 <div class="flex-container flex-row">
     {{#each @model as |vod|}}
-        <LinkTo @route="vods.vod" @model={{vod}}><VodCard @route="vods.vod" @model={{vod}}></VodCard></LinkTo>
+        <LinkTo @route="vods.vod" @model={{vod}}><ModelCard::VodCard @route="vods.vod" @model={{vod}} /></LinkTo>
     {{/each}}
 </div>

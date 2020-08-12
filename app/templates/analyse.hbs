@@ -1,5 +1,51 @@
-<h3>Let's analyse some clips</h3>
+<aside id="filter-menu">
+    <div class="filter-box">
+        <b>Games:</b>
+        <div class="flex-container flex-col">
+            {{#each gameList as |example|}}
+                <div class="width-block">
+                    <input type="checkbox" id="game {{example.game}}" value="{{example.game}}" onchange={{action updateGameFilter example.game}} />
+                    <label for="game {{example.game}}">{{example.game}}</label>
+                </div>
+            {{/each}}
+        </div>
 
-<div class="search-container flex-container flex-row">
-    <ModelSearch @model={{model}} />
+        <b>Years:</b>
+        <div class="flex-container flex-col">
+            {{#each yearList as |year|}}
+                <div class="width-block">
+                    <input type="checkbox" id="year {{year}}" value="{{year}}" onchange={{action updateYearFilter year}} />
+                    <label for="year {{year}}">{{year}}</label>
+                </div>
+            {{/each}}
+        </div>
+    </div>
+</aside>
+
+<div id="main-content" class="filter-result-container">
+
+    <h3>Let's analyse some clips</h3>
+
+    <Search::ModelSearch @model={{model}} @updateSearch={{this.updateSearch}} />
+
+    <div class="search-container flex-container flex-col">
+        {{#if searchQuery}}
+            <div class="demphasised">Looking for results on {{searchQuery}}</div>
+        {{/if}}
+    </div>
+
+
+    <div id="search-result-container" class="flex-container flex-col">
+        {{#if filteredModels.vods}}
+            <Search::FilterList @model={{filteredModels.vods}} @modelType="vod" />
+        {{else}}
+            <p>Bugger! No vods were found for your search criteria. 😭</p>
+        {{/if}}
+
+        {{#if filteredModels.clips}}
+            <Search::FilterList @model={{filteredModels.clips}} @modelType="clip" />
+        {{else}}
+            <p>Oh noes! No clips were found for your search. 😔</p>
+        {{/if}}
+    </div>
 </div>

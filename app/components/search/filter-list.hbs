@@ -1,0 +1,48 @@
+
+<button onclick={{action toggleCardLayout}} >View as table</button>
+
+<div class="flex-container flex-row">
+    {{#if cardsOn}}
+            {{#each limitedModel as |item|}}
+                {{#if isClip}}
+                    <ModelCard::ClipCard @clip={{item}}/>
+                {{/if}}
+
+                {{#if isVod}}
+                    <ModelCard::VodCard @vod={{item}}/>
+                {{/if}}
+            {{/each}}
+    {{else}}
+        <table>
+            <thead>
+                <tr>
+                    <td>Title</td>
+                    <td>Broadcaster</td>
+                    <td>Views</td>
+                    <td>Link</td>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each @model as |item|}}
+                    {{#if isClip}}
+                        <tr>
+                            <td>{{item.title}}</td>
+                            <td>{{item.broadcaster}}</td>
+                            <td>{{item.views}}</td>
+                            <td>{{item.url}}</td>
+                        </tr>
+                    {{/if}}
+
+                    {{#if isVod}}
+                        <tr>
+                            <td>{{item.title}}</td>
+                            <td>{{item.date}}</td>
+                            <td>{{item.views}}</td>
+                            <td>{{item.url}}</td>
+                        </tr>
+                    {{/if}}
+                {{/each}}
+            </tbody>
+        </table>
+    {{/if}}    
+</div>

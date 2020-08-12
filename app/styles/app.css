@@ -73,6 +73,9 @@ h1, h2, h3, h4, h5, h6 {
 .flex-row.flex-split {
     justify-content: space-between;
 }
+.flex-top-aligned {
+    align-items: flex-start;
+}
 
 .deemphasis {
     color: var(--colour-main-grey);
@@ -113,6 +116,10 @@ body {
 
 #main-content {
     padding: 1em 2em;
+}
+.filter-result-container {
+    float: right;
+    width: calc(100vw - 300px) ;
 }
 
 .card-item {
@@ -172,10 +179,11 @@ a:hover:has(.card-item) {
     align-items: center;
     justify-content: center;
 }
-
 .model-search {
     font-size: 1.5rem;
     padding: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
     min-width: 50%;
 
     border: none;
@@ -184,4 +192,25 @@ a:hover:has(.card-item) {
 }
 .model-search:focus {
     outline: none;
+}
+
+#search-result-container > * {
+    margin-right: 2rem;
+}
+
+.width-block {
+    display: block;
+    width: 100%;
+}
+
+aside#filter-menu {
+    background-color: var(--colour-main-violet);
+    color: var(--colour-main-white);
+
+    height: 100vh;
+    display: inline-block;
+    position: sticky;
+    padding: 1rem;
+    width: 300px;
+    border-radius: var(--default-border-radius);
 }
