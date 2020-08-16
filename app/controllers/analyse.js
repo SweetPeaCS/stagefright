@@ -1,8 +1,6 @@
 import Controller from '@ember/controller';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
-import { debounce } from '@ember/runloop';
-
 
 export default class AnalyseController extends Controller {
 
@@ -17,7 +15,7 @@ export default class AnalyseController extends Controller {
 
     // Filters
     get gameList() {
-        return this.model.clips.uniqBy('game');
+        return this.model.clips.uniqBy('game').getEach('game');
     }
 
     get yearList() {
@@ -48,7 +46,7 @@ export default class AnalyseController extends Controller {
     }
     @action
     updateSearch(query) {
-        this.set('searchQuery', query);
+        this.set('searchQuery', query.toLowerCase());
         this.updateFilteredClipsModel();
         this.updatefilterVodsModel();
     }
@@ -102,7 +100,7 @@ export default class AnalyseController extends Controller {
         this.filteredVods = this.model.vods
         .filter(vod => {
             if(this.filterByYear.length > 0) {
-                return this.filterByYear.includes(new Date(clip.date).getFullYear());
+                return this.filterByYear.includes(new Date(vod.date).getFullYear());
             } else {
                 return vod;
             }
@@ -115,6 +113,23 @@ export default class AnalyseController extends Controller {
             }
         })
         .filter(vod => vod.title.toLowerCase().includes(this.searchQuery))
+    }
+    @action   
+    async addTag(item, tag, type) {
+        // Type needs to be passed into component
+        const record = this.store.findRecord(type, item.get('id'))
+            .then(record => {
+                record.tags.addObject(tag);
+                record.save(); 
+            });
+        }
+    @action   
+    async removeTag(item, tag, type) {
+        this.store.findRecord(type, item.get('id'))
+            .then(store => {
+                store.tags = store.tags.removeObject(tag);
+                store.save();
+            })
     }
 
 }

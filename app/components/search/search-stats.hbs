@@ -1,0 +1,14 @@
+<div class="stat-wrapper flex-container flex-col">
+    <div class="flex-container flex-row flex-split">
+        <Analytics::StatCard @value={{averageTimeClips}} @unit="sec" @label="Average clip length" />
+        <Analytics::StatCard @value={{@model.clips.length}} @unit="Clips" @label="in library" />
+        <Analytics::StatCard @value={{@model.vods.length}} @unit="Vods" @label="in library" />
+        <Analytics::StatCard @value={{totalViewsClips}} @unit="views" @label="Total count for all clips" />
+    </div>
+
+    <div class="stats-center-chart">
+        <Analytics::BarChartTagCount @model={{@model}} @tags={{@tags}} @chartTheme={{stageFrightTheme}} />
+        <Analytics::BarChartTagViews @model={{@model}} @tags={{@tags}} @chartTheme={{stageFrightTheme}} />
+        <Analytics::GlobalVodTimeline @model={{@model}} @tags={{@tags}} @chartTheme={{stageFrightTheme}} />
+    </div>
+</div>

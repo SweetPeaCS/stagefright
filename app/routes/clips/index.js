@@ -1,7 +1,11 @@
 import Route from '@ember/routing/route';
+import RSVP from 'rsvp';
 
 export default class ClipsIndexRoute extends Route {
     async model() {
-        return this.store.findAll('clip');
+        return RSVP.hash({
+            clips: this.store.findAll('clip'),
+            tags: this.store.findAll('category')
+        })
     }
 }

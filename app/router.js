@@ -12,9 +12,11 @@ Router.map(function() {
     this.route('clip', { path: '/:clip_id' });
   });
   this.route('vods', function() {
-    this.route('vod', { path: '/:vod_id' }, function() {
-      this.route('clips');
-    });
+    this.route('vod', { path: '/:vod_id' }, function() {});
   });
   this.route('analyse');
+  this.route('categories', { path: '/tags' },function() {
+    this.route('category', { path: '/:category_id' });
+    this.route('new');
+  });
 });

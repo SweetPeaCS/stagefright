@@ -1,5 +1,10 @@
-<h3>{{model.title}}</h3>
-
-<iframe src={{model.embed}} width='640' height='360' frameborder='0' scrolling='no' allowfullscreen='true'></iframe>
-
-{{outlet}}
+<div id="main-content">
+    <h3>{{model.clips.title}}</h3>
+    <div class="flex-container flex-row flex-split">
+        <div class="video-content">
+            <iframe src={{model.clips.embed}} width='640' height='360' frameborder='0' scrolling='no' allowfullscreen='true'></iframe>
+            <p>External link: <a href="{{model.clips.url}}">Twitch site</a></p>
+        </div>
+        <ModelCard::CardTagList @item={{model.clips}} @modelType="clip" @tags={{model.tags}} @addTag={{addTag}} @removeTag={{removeTag}} />
+    </div>
+</div>

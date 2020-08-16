@@ -18,11 +18,12 @@ export default class FilterList extends Component {
     }
 
     get limitedModel() {
-        return this.args.model.slice(0, 20);
+        return this.args.model.sortBy('views').reverse().slice(0, 40);
     }
 
     @action
     toggleCardLayout() {
         this.cardsOn = (this.cardsOn ? false : true);
     }
+
 }

@@ -1,11 +1,14 @@
-<h3>Clip Overview</h3>
+<div id="main-content">
 
-<div class="search-container flex-container flex-row">
-    <Search::ModelSearch @model={{model}} @updateSearch={{action updateSearch}} />
-</div>
+    <h3>Clip Overview</h3>
 
-<div class="flex-container flex-row">
-    {{#each @model as |clip|}}
-        <LinkTo @route="clips.clip" @model={{clip}}><ModelCard::ClipCard @clip={{clip}} /></LinkTo>
-    {{/each}}
+    <div class="search-container flex-container flex-row">
+        <Search::ModelSearch @model={{model}} @updateSearch={{action updateSearch}} @searchQuery={{searchQuery}} />
+    </div>
+
+    <div class="flex-container flex-row">
+        {{#each filteredClips as |clip|}}
+            <ModelCard::ClipCard @clip={{clip}} @modelType="clip" @tags={{model.tags}} @addTag={{addTag}} @removeTag={{removeTag}} />
+        {{/each}}
+    </div>
 </div>

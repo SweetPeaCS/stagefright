@@ -4,33 +4,39 @@
             <img src="{{@clip.broadcasterLogo}}" alt="{{@clip.broadcaster}} Logo">
             {{@clip.broadcaster}}
         </span>
-        <h3>{{@clip.title}}</h3>
+        <h3>
+            <LinkTo @route="clips.clip" @model={{@clip}}>{{@clip.title}}</LinkTo>
+        </h3>
     </div>
     
-    <section class="meta-info flex-container flex-row flex-split flex-col-bottom">
-        <div class="card-meta-info-half">
-            <span class="flex-container flex-row">
-                <i class="gg-eye"></i>
-                <span>{{@clip.views}}</span>
-            </span>
-            <span class="flex-container flex-row">
-                <i class="gg-games"></i>
-                <span>{{#if @clip.isCSGO}}
-                    CS:GO
-                {{else}}
-                    {{@clip.game}}
-                {{/if}}</span>
-            </span>
+    <section class="meta-info flex-container flex-col flex-col-bottom">
+        <div class="flex-container flex-row flex-split">
+            <div class="card-meta-info-half">
+                <span class="flex-container flex-row">
+                    <i class="gg-eye"></i>
+                    <span>{{@clip.views}}</span>
+                </span>
+                <span class="flex-container flex-row">
+                    <i class="gg-games"></i>
+                    <span>{{#if @clip.isCSGO}}
+                        CS:GO
+                    {{else}}
+                        {{@clip.game}}
+                    {{/if}}</span>
+                </span>
+            </div>
+            <div class="card-meta-info-half card-meta-info-half_right">
+                <span class="flex-container flex-row fles-split">
+                    <i class="gg-stopwatch"></i>
+                    <span>{{@clip.duration}}s</span>
+                </span>
+                <span class="flex-container flex-row">
+                    <i class="gg-calendar"></i>
+                    <span>{{@clip.localeDate}}</span>
+                </span>
+            </div>
         </div>
-        <div class="card-meta-info-half card-meta-info-half_right">
-            <span class="flex-container flex-row fles-split">
-                <i class="gg-stopwatch"></i>
-                <span>{{@clip.duration}}s</span>
-            </span>
-            <span class="flex-container flex-row">
-                <i class="gg-calendar"></i>
-                <span>{{@clip.localeDate}}</span>
-            </span>
-        </div>
+
+        <ModelCard::CardTagList @item={{@clip}} @modelType={{@modelType}} @tags={{@tags}} @addTag={{@addTag}} @removeTag={{@removeTag}} />
     </section>
 </div>

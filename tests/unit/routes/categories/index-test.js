@@ -1,11 +1,11 @@
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
 
-module('Unit | Route | vods/vod/clips', function(hooks) {
+module('Unit | Route | categories/index', function(hooks) {
   setupTest(hooks);
 
   test('it exists', function(assert) {
-    let route = this.owner.lookup('route:vods/vod/clips');
+    let route = this.owner.lookup('route:categories/index');
     assert.ok(route);
   });
 });

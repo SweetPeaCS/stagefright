@@ -1,5 +1,13 @@
-<h3>{{model.title}}</h3>
+<div id="main-content">
 
-<iframe src={{model.embed}} width='640' height='360' frameborder='0' scrolling='no' allowfullscreen='true'></iframe>
+    <h3>{{model.title}}</h3>
 
-{{outlet}}
+    <iframe src={{model.vods.embed}} width='640' height='360' frameborder='0' scrolling='no' allowfullscreen='true'></iframe>
+    <p>External link: <a href="{{model.vods.url}}">{{model.vods.url}}</a></p>
+    <ModelCard::CardTagList @item={{model.vods}} @modelType="vod" @tags={{model.vods.tags}} @addTag={{addTag}} @removeTag={{removeTag}} />
+
+    <div class="vod-timeline">
+        {{!-- <Analytics::VodTimeline @model={{model}} @vodId={{model.vods.id}} /> --}}
+    </div>
+
+</div>

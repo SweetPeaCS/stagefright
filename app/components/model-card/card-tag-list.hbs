@@ -1,0 +1,23 @@
+<div class="tag-space">
+    {{#if isInEditMode}}
+        {{#each @item.tags as |tag|}}
+            <ModelCard::CardTag @isEditable={{isInEditMode}} @isSelected="true" @item={{@item}} @modelType={{@modelType}} @tag={{tag}} @addTag={{@addTag}} @removeTag={{@removeTag}}>{{tag.name}}</ModelCard::CardTag>
+        {{/each}}
+        
+        {{#each inactiveTags as |tag|}}
+            <ModelCard::CardTag @isEditable={{isInEditMode}} @item={{@item}} @modelType={{@modelType}} @tag={{tag}} @addTag={{@addTag}} @removeTag={{@removeTag}}>{{tag.name}}</ModelCard::CardTag>
+        {{/each}}
+    {{else}}
+        {{#each @item.tags as |tag|}}
+            <ModelCard::CardTag @isEditable={{isInEditMode}} @isSelected="true" @item={{@item}} @modelType={{@modelType}} @tag={{tag}} @addTag={{@addTag}} @removeTag={{@removeTag}}>{{tag.name}}</ModelCard::CardTag>
+        {{/each}}
+    {{/if}}
+            
+    <button onclick={{action toggleEditMode}} class="tag-label selected">
+        {{#if isInEditMode}}
+            <i class="gg-close"></i> done
+        {{else}}
+            <i class="gg-add"></i> add
+        {{/if}}
+    </button>
+</div>

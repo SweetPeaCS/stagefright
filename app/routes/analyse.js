@@ -6,7 +6,9 @@ export default class AnalyseRoute extends Route {
       return RSVP.hash({
         vods: this.store.findAll('vod'),
         clips: this.store.findAll('clip'),
+        tags: this.store.findAll('category'),
       })
     }
+
 
 }

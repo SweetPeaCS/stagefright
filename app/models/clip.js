@@ -1,4 +1,4 @@
-import Model, { attr, belongsTo } from '@ember-data/model';
+import Model, { attr, belongsTo, hasMany } from '@ember-data/model';
 
 export default class ClipModel extends Model {
     @attr slug;
@@ -36,5 +36,6 @@ export default class ClipModel extends Model {
         });
     }
 
-    @belongsTo('vod') vod;    
+    @belongsTo('vod') vodId;    
+    @hasMany('category') tags;
 }

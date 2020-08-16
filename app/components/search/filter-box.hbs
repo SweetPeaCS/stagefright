@@ -1,0 +1,23 @@
+<aside id="filter-menu">
+    <div class="filter-box">
+        <b>Games:</b>
+        <div class="flex-container flex-col">
+            {{#each @gameList as |game|}}
+                <div class="width-block">
+                    <Input @type="checkbox" id="game {{game}}" value="{{game}}" @change={{action @updateGameFilter game}} />
+                    <label for="game {{game}}">{{game}}</label>
+                </div>
+            {{/each}}
+        </div>
+
+        <b>Years:</b>
+        <div class="flex-container flex-col">
+            {{#each @yearList as |year|}}
+                <div class="width-block">
+                    <Input @type="checkbox" id="year {{year}}" value="{{year}}" @change={{action @updateYearFilter year}} />
+                    <label for="year {{year}}">{{year}}</label>
+                </div>
+            {{/each}}
+        </div>
+    </div>
+</aside>

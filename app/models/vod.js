@@ -26,5 +26,10 @@ export default class VodModel extends Model {
         });
     }
 
+    get url() {
+        return `https://www.twitch.tv/twitch/v/${this.vodId}`
+    }
+
     @hasMany('clip') clips;
+    @hasMany('category') tags;
 }

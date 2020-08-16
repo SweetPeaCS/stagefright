@@ -1,0 +1,21 @@
+{{#if @isEditable}}
+    {{#if @isSelected}}
+        <button class="tag-label selected" onclick={{action @removeTag @item @tag @modelType}}>
+            <i class="gg-tag"></i>{{yield}}
+        </button>
+    {{else}}
+        <button class="tag-label" onclick={{action @addTag @item @tag @modelType}}>
+            <i class="gg-tag"></i>{{yield}}
+        </button>
+    {{/if}}
+{{else}}
+    {{#if @isSelected}}
+        <button class="tag-label selected" >
+            <i class="gg-tag"></i>{{yield}}
+        </button>
+    {{else}}
+        <button class="tag-label" >
+            <i class="gg-tag"></i>{{yield}}
+        </button>
+    {{/if}}
+{{/if}}

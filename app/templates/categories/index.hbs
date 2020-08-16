@@ -1,0 +1,22 @@
+<section id="main-content">
+    <h3>Categories</h3>
+
+    <div class="flex-container">
+        {{#if model}}
+            <ul id="category-list">
+            {{#each model as |cat|}}
+                <li><LinkTo @route="categories.category" @model={{cat}}>{{cat.name}}</LinkTo><button onclick={{action deleteCategory cat}}>Delete</button></li>
+            {{/each}}
+            </ul>
+        {{else}}
+            <p>There are no categories yet!<br />
+            Maybe try to create one.</p>
+        {{/if}}
+    </div>
+
+    <div>
+        <p>Missing something?</p>
+        <LinkTo class="button" @route="categories.new"> + Create new category </LinkTo>
+    </div>
+    
+</section>

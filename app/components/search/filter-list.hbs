@@ -1,15 +1,23 @@
 
-<button onclick={{action toggleCardLayout}} >View as table</button>
+<div class="flex-container flex-row">
+    <div class="toggle-wrapper">
+        <label>
+            <Input @type="checkbox" @change={{action toggleCardLayout}} >View as table</Input>
+            <span class="toggle-background"></span>
+            Toggle table view
+        </label>
+    </div>
+</div>
 
 <div class="flex-container flex-row">
     {{#if cardsOn}}
             {{#each limitedModel as |item|}}
                 {{#if isClip}}
-                    <ModelCard::ClipCard @clip={{item}}/>
+                    <ModelCard::ClipCard @clip={{item}} @modelType={{@modelType}} @tags={{@tags}} @addTag={{@addTag}} @removeTag={{@removeTag}} />
                 {{/if}}
 
                 {{#if isVod}}
-                    <ModelCard::VodCard @vod={{item}}/>
+                    <ModelCard::VodCard @vod={{item}} @modelType={{@modelType}} @tags={{@tags}} @addTag={{@addTag}} @removeTag={{@removeTag}} />
                 {{/if}}
             {{/each}}
     {{else}}
@@ -23,7 +31,7 @@
                 </tr>
             </thead>
             <tbody>
-                {{#each @model as |item|}}
+                {{#each limitedModel as |item|}}
                     {{#if isClip}}
                         <tr>
                             <td>{{item.title}}</td>
