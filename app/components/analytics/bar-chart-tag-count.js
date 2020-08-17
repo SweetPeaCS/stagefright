@@ -47,6 +47,8 @@ export default class AnalyticsBarChartTagCountComponent extends Component {
         Object.keys(unorderedResults).sort().forEach(key => orderedResults[key] = unorderedResults[key]);
         const data = Object.values(orderedResults);
 
+        console.log(data);
+
         return [{
                 name: 'Tags',
                 data: data

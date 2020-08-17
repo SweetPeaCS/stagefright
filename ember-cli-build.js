@@ -10,9 +10,10 @@ module.exports = function(defaults) {
       includeHighStock: false,
       includeHighMaps: false,
       includeHighChartsMore: true,
-      includeHighCharts3D: true,
+      includeHighCharts3D: false,
       includeModules: [
-        'timeline'
+        'timeline',
+        'histogram-bellcurve',
       ]
       /* available modules:
         boost, broken-axis, canvas-tools, data, drilldown, exporting, funnel,

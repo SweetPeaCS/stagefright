@@ -5,29 +5,26 @@ export default class AnalyticsGlobalVodTimelineComponent extends Component {
     get chartOptions() {
         const titles = this.args.model.vods.getEach('title');
         return {
-            chart: {
-                // zoomType: 'x',
-                type: 'timeline'
-            },
-            xAxis: {
-                type: 'datetime',
-                visible: false,
-                min: 0,
-                max: 100
-            },
-            yAxis: {
-                gridLineWidth: 1,
-                title: null,
-                labels: {
-                    enabled: false
-                }
-            },
-            legend: {
-                enabled: false
-            },
-            marker: {
-                symbol: 'circle'
-            },
+        
+            title: {
+                text: 'Vod timeline mapping'
+              },
+            
+              xAxis: [{
+                title: { text: 'Data' },
+                alignTicks: false
+              }, {
+                title: { text: 'Histogram' },
+                alignTicks: false,
+                opposite: true
+              }],
+            
+              yAxis: [{
+                title: { text: 'Data' }
+              }, {
+                title: { text: 'Histogram' },
+                opposite: true
+              }]
         }
     }
 
@@ -36,27 +33,44 @@ export default class AnalyticsGlobalVodTimelineComponent extends Component {
         const vodCollection = this.args.model.vods;
         let resultSet = [];
 
+        // only VODs that are longer than 2hs
         vodCollection.filter(vod => vod.get('length') > (2 * 60 * 60)).forEach(vod => {
             let data = {};
             const vodId = vod.get('vodId');
             const vodLength = vod.get('length');
             const vodConnectedClips = vod.get('clips');
 
-            data[vodId] = {};
-
             vodConnectedClips.forEach((clip, index) => {
                 data = {
-                    x: Math.round(vodLength/clip.get('vodOffset')),
+                    x: Math.floor((clip.get('vodOffset')/vodLength) * 100 ),
                     name: clip.get('title'),
-                    label: clip.get('tags').getEach('name')
+                    // label: clip.get('tags').getEach('name'),
                 }
             })
 
             resultSet.push(data);
         });
 
-        return {
-            data: resultSet
-        }
+        let dataExport = [];
+        resultSet.forEach(item => dataExport.push(item.x));
+
+
+        return [{
+            name: 'Histogram',
+            type: 'histogram',
+            xAxis: 1,
+            yAxis: 1,
+            baseSeries: 's1',
+            zIndex: -1
+          }, {
+            name: 'Data',
+            type: 'scatter',
+            data: dataExport,
+            id: 's1',
+            marker: {
+              radius: 1.5
+            }
+          }]
+
     }
 }
