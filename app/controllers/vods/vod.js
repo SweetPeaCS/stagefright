@@ -3,6 +3,19 @@ import { action } from '@ember/object';
 
 export default class VodsVodController extends Controller {
 
+    // This fixes mixed models when coming
+    // from a route that already loaded multiple
+    // records into the store
+    get vodByParam() {
+        if(this.model.vods) {
+            if(this.model.vods.get('vodId')) {
+                return this.model.vods;
+            }
+        } 
+
+        return this.model;
+    }
+
     @action   
     async addTag(item, tag, type) {
         // Type needs to be passed into component

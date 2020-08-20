@@ -1,5 +1,5 @@
 <div class="search-container flex-container flex-row">
-    <input placeholder="Search" class="model-search" onkeyup={{action @updateSearch value="target.value"}} value={{readonly searchQuery}} />
+    <Input placeholder="Search" class="model-search" {{on "keyup" @updateSearch}} />
 </div>
 
 

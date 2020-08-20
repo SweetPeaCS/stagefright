@@ -61,6 +61,7 @@ export default class AnalyticsGlobalVodTimelineComponent extends Component {
             xAxis: 1,
             yAxis: 1,
             baseSeries: 's1',
+            // binsNumber: 20,
             zIndex: -1
           }, {
             name: 'Data',

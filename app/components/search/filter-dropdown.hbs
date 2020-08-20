@@ -1,0 +1,16 @@
+    <span class="filter-dropdown-main flex-container flex-row" {{on "click" changeCollapseState}}>
+        {{#if isDecollapsed}}
+            <i class="gg-chevron-up-r"></i>
+        {{else}}
+            <i class="gg-chevron-down-r"></i>
+        {{/if}}
+        {{@label}}
+    </span>
+
+    {{#if isDecollapsed}}
+    <div class="filter-dropdown-option flex-container flex-col">
+        {{#each inActiveItems as |item|}}
+            <span {{on "click" (fn selectFilterItem item @type)}} value={{item}}>{{item}}</span>
+        {{/each}}
+    </div>
+    {{/if}}

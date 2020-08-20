@@ -4,8 +4,8 @@ export default class AnalyticsVodTimelineComponent extends Component {
 
     get chartData() {
         const vodId = this.args.vodId;
-        const vods = this.args.model.vods;
-        const vod = vods.findBy('id', vodId);
+        const vod = this.args.model;
+
         const clips = vod.get('clips');
         let resultSet = []
 
@@ -22,47 +22,49 @@ export default class AnalyticsVodTimelineComponent extends Component {
             }) 
         });
 
-        const data = resultSet.map(clip => {
-            return {
-                "x": timespan/clip.postion,
-                "label": clip.tags,
-                "name": clip.title,
-            }
-        });
+        const data = resultSet.map(clip => clip.postion/timespan * 100);
 
-        console.log(data);
-
-        return {
+        return [{
+            name: 'Histogram',
+            type: 'histogram',
+            xAxis: 1,
+            yAxis: 1,
+            baseSeries: 's1',
+            zIndex: -1
+          }, {
+            name: 'Data',
+            type: 'scatter',
+            data: data,
+            id: 's1',
             marker: {
-                symbol: 'circle'
-            },
-            data: [ data ]
-        }
+              radius: 1.5
+            }
+          }]
     }
     
     get options() {
         return {
-            chart: {
-                type: 'timeline'
-            },
             title: {
-                text: 'Vod Timeline'
-            },
-            xAxis: {
+                text: 'Vod timeline mapping'
+              },
+            
+              xAxis: [{
+                title: { text: 'Data' },
+                alignTicks: false,
+              }, {
+                title: { text: 'Histogram' },
+                alignTicks: false,
+                opposite: true,
                 min: 0,
                 max: 100
-            },
-            yAxis: {
-                visible: false,
-                gridLineWidth: 1,
-                title: null,
-                labels: {
-                    enabled: false
-                }
-            },
-            marker: {
-            symbol: 'circle'
-        },
+              }],
+            
+              yAxis: [{
+                title: { text: 'Data' }
+              }, {
+                title: { text: 'Histogram' },
+                opposite: true
+              }]
         }
     }
 

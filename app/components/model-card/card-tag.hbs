@@ -1,10 +1,10 @@
 {{#if @isEditable}}
     {{#if @isSelected}}
-        <button class="tag-label selected" onclick={{action @removeTag @item @tag @modelType}}>
+        <button class="tag-label selected" {{on "click" (fn @removeTag @item @tag @modelType)}}>
             <i class="gg-tag"></i>{{yield}}
         </button>
     {{else}}
-        <button class="tag-label" onclick={{action @addTag @item @tag @modelType}}>
+        <button class="tag-label" {{on "click" (fn @addTag @item @tag @modelType)}}>
             <i class="gg-tag"></i>{{yield}}
         </button>
     {{/if}}

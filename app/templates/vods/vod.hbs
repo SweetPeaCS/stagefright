@@ -1,13 +1,18 @@
 <div id="main-content">
 
-    <h3>{{model.title}}</h3>
+    <h3>{{vodByParam.title}}</h3>
 
-    <iframe src={{model.vods.embed}} width='640' height='360' frameborder='0' scrolling='no' allowfullscreen='true'></iframe>
-    <p>External link: <a href="{{model.vods.url}}">{{model.vods.url}}</a></p>
-    <ModelCard::CardTagList @item={{model.vods}} @modelType="vod" @tags={{model.vods.tags}} @addTag={{addTag}} @removeTag={{removeTag}} />
-
+    <div class="flex-container flex-row flex-split flex-top-aligned">
+        <div class="video-content">
+            <iframe src={{vodByParam.embed}} width='640' height='360' frameborder='0' scrolling='no' allowfullscreen='true'></iframe>
+            <p>External link: <a href="{{vodByParam.url}}">{{vodByParam.url}}</a></p>
+        </div>
+        <div class="tag-list">
+            <ModelCard::VodCard @vod={{vodByParam}} @modelType="vod" @tags={{vodByParam.tags}} @addTag={{addTag}} @removeTag={{removeTag}} />
+        </div>
+    </div>
     <div class="vod-timeline">
-        {{!-- <Analytics::VodTimeline @model={{model}} @vodId={{model.vods.id}} /> --}}
+        <Analytics::VodTimeline @model={{vodByParam}} @vodId={{vodId}} />
     </div>
 
 </div>

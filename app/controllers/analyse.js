@@ -1,6 +1,7 @@
 import Controller from '@ember/controller';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
+import { debounce } from '@ember/runloop';
 
 export default class AnalyseController extends Controller {
 
@@ -37,41 +38,66 @@ export default class AnalyseController extends Controller {
     }
 
     @action
-    toggleFilters() {
-        this.isFiltersEnabled = (this.isFiltersEnabled ? false : true);
+    updateSearch(event) {
+        this.set('searchQuery', event.target.value.toLowerCase());
+    
+        const context = { name: "debounce search input" }
+        debounce(
+            this,
+            function() {
+                this.updateFilteredClipsModel();
+                this.updatefilterVodsModel();
+            },
+            250
+        );
+    }
+    
+    @action
+    removeYearFilter(year) {
+        this.filterByYear = this.filterByYear.without(year);
     }
     @action
-    toggleFilterPanel() {
-        this.isFiltersOpen = (this.isFiltersOpen ? false : true);
+    addYearFilter(year) {
+        this.filterByYear.pushObject(year);
     }
-    @action
-    updateSearch(query) {
-        this.set('searchQuery', query.toLowerCase());
-        this.updateFilteredClipsModel();
-        this.updatefilterVodsModel();
+    @action 
+    removeGameFilter(game) {
+        this.filterByGame = this.filterByGame.without(game);
     }
+    @action 
+    addGameFilter(game) {
+        this.filterByGame.pushObject(game);
+    }
+
     @action
-    updateYearFilter(year) {
-        if(!this.filterByYear.includes(year)) {
-            this.filterByYear.pushObject(year);
-        } else {
-            this.filterByYear = this.filterByYear.without(year);
+    removeFilter(item, type) {
+        switch(type) {
+            case "game":
+                this.removeGameFilter(item);
+                break;
+            case "year":
+                this.removeYearFilter(item);
+                break;
         }
 
         this.updateFilteredClipsModel();
         this.updatefilterVodsModel();
     }
     @action
-    updateGameFilter(game) {
-        if(!this.filterByGame.includes(game)) {
-            this.filterByGame.pushObject(game);
-        } else {
-            this.filterByGame = this.filterByGame.without(game);
+    addFilter(item, type) {
+        switch(type) {
+            case "game":
+                this.addGameFilter(item);
+                break;
+            case "year":
+                this.addYearFilter(item);
+                break;
         }
 
         this.updateFilteredClipsModel();
         this.updatefilterVodsModel();
     }
+
     @action
     updateFilteredClipsModel() {
         this.filteredClips = this.model.clips

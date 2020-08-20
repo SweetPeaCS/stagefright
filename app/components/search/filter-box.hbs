@@ -1,22 +1,21 @@
 <aside id="filter-menu">
-    <div class="filter-box">
-        <b>Games:</b>
-        <div class="flex-container flex-col">
-            {{#each @gameList as |game|}}
-                <div class="width-block">
-                    <Input @type="checkbox" id="game {{game}}" value="{{game}}" @change={{action @updateGameFilter game}} />
-                    <label for="game {{game}}">{{game}}</label>
-                </div>
-            {{/each}}
+    <div class="filter-box flex-container flex-row">
+        <h5>Filters</h5>
+        <div class="filter-box-dropdown flex-container flex-row">
+            <div class="filter-box-dropdown-wrapper">
+                <Search::FilterDropdown @label="Games" @data={{@gameList}} @active={{@filterByGame}} @addFilter={{@addFilter}} @type="game" />
+            </div>
+            <div class="filter-box-dropdown-wrapper">
+                <Search::FilterDropdown @label="Years" @data={{@yearList}} @active={{@filterByYear}} @addFilter={{@addFilter}} @type="year" />
+            </div>
         </div>
+        <div class="flex-container flex-row tag-space">
+            {{#each @filterByGame as |game|}}
+                <Search::FilterTag @label={{game}} @removeFilter={{@removeFilter}} @type="game" />
+            {{/each}}
 
-        <b>Years:</b>
-        <div class="flex-container flex-col">
-            {{#each @yearList as |year|}}
-                <div class="width-block">
-                    <Input @type="checkbox" id="year {{year}}" value="{{year}}" @change={{action @updateYearFilter year}} />
-                    <label for="year {{year}}">{{year}}</label>
-                </div>
+            {{#each @filterByYear as |year|}}
+                <Search::FilterTag @label={{year}} @removeFilter={{@removeFilter}} @type="year" />
             {{/each}}
         </div>
     </div>

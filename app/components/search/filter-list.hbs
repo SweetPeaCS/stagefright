@@ -1,5 +1,5 @@
 
-<div class="flex-container flex-row">
+{{!-- <div class="flex-container flex-row">
     <div class="toggle-wrapper">
         <label>
             <Input @type="checkbox" @change={{action toggleCardLayout}} >View as table</Input>
@@ -7,7 +7,7 @@
             Toggle table view
         </label>
     </div>
-</div>
+</div> --}}
 
 <div class="flex-container flex-row">
     {{#if cardsOn}}
@@ -21,36 +21,12 @@
                 {{/if}}
             {{/each}}
     {{else}}
-        <table>
-            <thead>
-                <tr>
-                    <td>Title</td>
-                    <td>Broadcaster</td>
-                    <td>Views</td>
-                    <td>Link</td>
-                </tr>
-            </thead>
-            <tbody>
-                {{#each limitedModel as |item|}}
-                    {{#if isClip}}
-                        <tr>
-                            <td>{{item.title}}</td>
-                            <td>{{item.broadcaster}}</td>
-                            <td>{{item.views}}</td>
-                            <td>{{item.url}}</td>
-                        </tr>
-                    {{/if}}
+        {{#if isClip}}
+            {{clipTable}}
+        {{/if}}
 
-                    {{#if isVod}}
-                        <tr>
-                            <td>{{item.title}}</td>
-                            <td>{{item.date}}</td>
-                            <td>{{item.views}}</td>
-                            <td>{{item.url}}</td>
-                        </tr>
-                    {{/if}}
-                {{/each}}
-            </tbody>
-        </table>
+        {{#if isVod}}
+            {{vodTable}}
+        {{/if}}
     {{/if}}    
 </div>

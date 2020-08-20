@@ -13,7 +13,7 @@
         {{/each}}
     {{/if}}
             
-    <button onclick={{action toggleEditMode}} class="tag-label selected">
+    <button {{on "click" toggleEditMode}} class="tag-label selected">
         {{#if isInEditMode}}
             <i class="gg-close"></i> done
         {{else}}

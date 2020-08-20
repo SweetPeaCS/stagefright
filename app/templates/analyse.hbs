@@ -1,8 +1,7 @@
-<Search::FilterBox @gameList={{gameList}} @yearList={{yearList}} @updateGameFilter={{updateGameFilter}} @updateYearFilter={{updateYearFilter}}/>
+<div id="main-content">
 
-<div id="main-content" class="filter-result-container">
-
-    <Search::ModelSearch @model={{model}} @updateSearch={{updateSearch}} />
+    <Search::ModelSearch @updateSearch={{updateSearch}} @searchQuery={{searchQuery}} />
+    <Search::FilterBox @gameList={{gameList}} @yearList={{yearList}} @filterByGame={{filterByGame}} @filterByYear={{filterByYear}} @removeFilter={{removeFilter}} @addFilter={{addFilter}} />
 
     <Search::SearchStats @model={{filteredModels}} @tags={{model.tags}} />
 

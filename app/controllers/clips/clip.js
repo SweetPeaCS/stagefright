@@ -3,6 +3,19 @@ import { action } from '@ember/object';
 
 export default class ClipsClipController extends Controller {
 
+    // Fixes access to model if we transition
+    // from a route that has already loaded 
+    // multiple records into the store
+    get clipByParam() {
+        if(this.model.clips) {
+            if(this.model.clips.get('slug')) {
+                return this.model.clips;
+            }
+        } 
+
+        return this.model;
+    }
+
     @action   
     async addTag(item, tag, type) {
         // Type needs to be passed into component

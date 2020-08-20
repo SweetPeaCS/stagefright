@@ -8,4 +8,11 @@ export default class ClipRoute extends Route {
             tags: this.store.findAll('category')
         })
     }
+
+    setupController(controller, model) {
+        this._super(...arguments);
+        const { clip_id } = this.paramsFor(this.routeName);
+        controller.set('clipId', clip_id);
+        controller.set('model', model);
+    }
 }
