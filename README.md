@@ -6,8 +6,8 @@ It allows to watch and categorise Twitch clips.
 This should be driven in parallel with [stagefright-backend](https://github.com/SweetPeaCS/stagefright-backend).
 
 ![Top app](https://raw.githubusercontent.com/SweetPeaCS/stagefright-frontend/master/README/clip-analytics-top-w-filters.png)
-![Histogram](https://raw.githubusercontent.com/SweetPeaCS/stagefright-frontend/master/README/clip-list.png.png)
-![Clip list](https://raw.githubusercontent.com/SweetPeaCS/stagefright-frontend/master/README/histogram-chart.png)
+![Histogram chart](https://raw.githubusercontent.com/SweetPeaCS/stagefright-frontend/master/README/histogram-chart.png)
+![Clip list](https://raw.githubusercontent.com/SweetPeaCS/stagefright-frontend/master/README/clip-list.png)
 
 ## Prerequisites
 
