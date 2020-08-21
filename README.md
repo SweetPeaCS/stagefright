@@ -1,7 +1,13 @@
 # stage-fright-frontend
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+This repository contains the frontend application for the Twitch clip categoriser.
+
+It allows to watch and categorise Twitch clips.
+This should be driven in parallel with [stagefright-backend](https://github.com/SweetPeaCS/stagefright-backend).
+
+![Top app](https://raw.githubusercontent.com/SweetPeaCS/stagefright-frontend/master/README/clip-analytics-top-w-filters.png)
+![Histogram](https://raw.githubusercontent.com/SweetPeaCS/stagefright-frontend/master/README/clip-list.png.png)
+![Clip list](https://raw.githubusercontent.com/SweetPeaCS/stagefright-frontend/master/README/histogram-chart.png)
 
 ## Prerequisites
 
@@ -10,48 +16,12 @@ You will need the following things properly installed on your computer.
 * [Git](https://git-scm.com/)
 * [Node.js](https://nodejs.org/) (with npm)
 * [Ember CLI](https://ember-cli.com/)
-* [Google Chrome](https://google.com/chrome/)
 
 ## Installation
 
 * `git clone <repository-url>` this repository
 * `cd stage-fright-frontend`
 * `npm install`
-
-## Running / Development
-
-* `ember serve`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
-* Visit your tests at [http://localhost:4200/tests](http://localhost:4200/tests).
-
-### Code Generators
-
-Make use of the many generators for code, try `ember help generate` for more details
-
-### Running Tests
-
-* `ember test`
-* `ember test --server`
-
-### Linting
-
-* `npm run lint:hbs`
-* `npm run lint:js`
-* `npm run lint:js -- --fix`
-
-### Building
-
-* `ember build` (development)
-* `ember build --environment production` (production)
-
-### Deploying
-
-Specify what it takes to deploy your app.
-
-## Further Reading / Useful Links
-
-* [ember.js](https://emberjs.com/)
-* [ember-cli](https://ember-cli.com/)
-* Development Browser Extensions
-  * [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
-  * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
+* `ember build`
+* `cd dist/`
+* Serve the distribution directory from your favourite web host (eg: `python -m SimpleHTTPServer 8080`)
